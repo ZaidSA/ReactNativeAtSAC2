@@ -48,7 +48,8 @@ export default class LoginComponent extends Component {
         // console.log(this.state.password);
         // console.log('====================================');
 
-        fetch('http://35.160.197.175:3006/api/v1/user/login',
+        //Note:- Provide valid URL
+        fetch('http://',
             {
                 method: 'POST',
                 headers: {
