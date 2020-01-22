@@ -2,7 +2,7 @@
 ReactNative session project.
 
 # Usage
-1. Open project in terminal & do, 
+1. Open project in terminal/command prompt & do, 
 ```js
 npm start
 ```
