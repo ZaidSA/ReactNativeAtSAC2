@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TextInput, Button, TouchableOpacity, Alert } from 'react-native'
+import { View, Text, StyleSheet, TextInput, Button, TouchableOpacity, Alert, ActivityIndicator } from 'react-native'
+import LoadingComponent from './LoadingComponent'
 
 export default class LoginComponent extends Component {
     constructor() {
         super()
-        this.state = { email: 'jm1@example.com', password: 'jay@123' }
+        this.state = {isLoading: false, email: 'jm1@example.com', password: 'jay@123' }
     }
 
     render() {
@@ -12,7 +13,7 @@ export default class LoginComponent extends Component {
             <View style={styles.topView}>
                 <Text style={styles.loginTitle}> Login </Text>
             </View>
-
+            <LoadingComponent isLoading={this.state.isLoading}></LoadingComponent>
             <View style={styles.middleView}>
                 <TextInput
                     keyboardType='email-address'
@@ -48,8 +49,9 @@ export default class LoginComponent extends Component {
         // console.log(this.state.password);
         // console.log('====================================');
 
+        this.setState({isLoading: true})
         //Note:- Provide valid URL
-        fetch('http://',
+        fetch('http://35.160.197.175:3006/api/v1/user/login',
             {
                 method: 'POST',
                 headers: {
@@ -65,6 +67,8 @@ export default class LoginComponent extends Component {
                 } else {
                     
                 }
+
+                this.setState({isLoading: false})
             }).then((responseJSON) => {
                 console.log(responseJSON);
                 Alert.alert('Success', 'Logged in', [
@@ -77,6 +81,13 @@ export default class LoginComponent extends Component {
                         style: 'destructive'
                     },
                 ])
+
+                this.setState({isLoading: false})
+            }).catch((error) => {
+                console.log('====================================');
+                console.log(error);
+                console.log('====================================');
+                this.setState({isLoading: false})
             })
     }
 }

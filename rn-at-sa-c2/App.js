@@ -1,18 +1,20 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import LoginComponent from './Components/LoginComponent';
+import FAQComponent from './Components/FAQComponent';
+import PostComponent from './Components/PostComponent';
 
 export default function App() {
-  return (<LoginComponent></LoginComponent>)
+  return <View style={styles.container}>
+    <PostComponent></PostComponent>
+  </View>//<FAQComponent></FAQComponent>//(<LoginComponent></LoginComponent>)
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row'
+    backgroundColor: '#f00',
+    
   },
   title: {
     color: '#ff0000',
