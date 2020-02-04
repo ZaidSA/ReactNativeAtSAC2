@@ -1,11 +1,34 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TextInput, Button, TouchableOpacity, Alert, ActivityIndicator } from 'react-native'
+import { View, Text, Image, StyleSheet, TextInput, Button, TouchableOpacity, Alert, ActivityIndicator } from 'react-native'
 import LoadingComponent from './LoadingComponent'
 
 export default class LoginComponent extends Component {
+    static navigationOptions = {
+        title: ''
+        ,tabBarIcon: ({ focused }) => {
+            if (focused) {
+                return <Image source={require('../assets/apps.png')}></Image>
+            } else {
+                return <Image source={require('../assets/drink.png')}></Image>
+            }
+        }
+    }
+
     constructor() {
         super()
-        this.state = {isLoading: false, email: 'jm1@example.com', password: 'jay@123' }
+        this.state = { isLoading: false, email: 'jm1@example.com', password: 'jay@123' }
+    }
+
+    componentDidMount() {
+        console.log('====================================');
+        console.log('LoginComponent: componentDidMount');
+        console.log('====================================');
+    }
+
+    componentWillUnmount() {
+        console.log('====================================');
+        console.log('LoginComponent: componentWillUnmount');
+        console.log('====================================');
     }
 
     render() {
@@ -36,7 +59,8 @@ export default class LoginComponent extends Component {
             </View>
 
             <View style={styles.bottomView}>
-
+                <Button title='FAQ' onPress={() => this.props.navigation.navigate('FAQ', { token: 'qwert' })}></Button>
+                <Button title='Toggle' onPress={() => this.props.navigation.toggleDrawer()}></Button>
             </View>
 
 
@@ -49,7 +73,7 @@ export default class LoginComponent extends Component {
         // console.log(this.state.password);
         // console.log('====================================');
 
-        this.setState({isLoading: true})
+        this.setState({ isLoading: true })
         //Note:- Provide valid URL
         fetch('http://35.160.197.175:3006/api/v1/user/login',
             {
@@ -65,10 +89,10 @@ export default class LoginComponent extends Component {
                 if (response.status == 200) {
                     return response.json()
                 } else {
-                    
+
                 }
 
-                this.setState({isLoading: false})
+                this.setState({ isLoading: false })
             }).then((responseJSON) => {
                 console.log(responseJSON);
                 Alert.alert('Success', 'Logged in', [
@@ -82,12 +106,12 @@ export default class LoginComponent extends Component {
                     },
                 ])
 
-                this.setState({isLoading: false})
+                this.setState({ isLoading: false })
             }).catch((error) => {
                 console.log('====================================');
                 console.log(error);
                 console.log('====================================');
-                this.setState({isLoading: false})
+                this.setState({ isLoading: false })
             })
     }
 }

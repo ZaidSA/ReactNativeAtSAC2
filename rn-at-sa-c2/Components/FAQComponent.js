@@ -1,12 +1,52 @@
 import React, { Component } from 'react'
-import { View, Text, ScrollView, SafeAreaView, TextInput } from 'react-native'
+import { View, Text, ScrollView, Button, SafeAreaView, TextInput } from 'react-native'
 
 
 export default class FAQComponent extends Component {
+    componentDidMount() {
+        console.log('====================================');
+        console.log('FAQComponent: componentDidMount');
+        console.log(this.props.navigation.state['params']['token']);
+        console.log('====================================');
+        this.props.navigation.addListener('willFocus', () => {
+            console.log('====================================');
+            console.log('FAQComponent: willFocus');
+            console.log('====================================');
+        })
+
+        this.props.navigation.addListener('didFocus', () => {
+            console.log('====================================');
+            console.log('FAQComponent: didFocus');
+            console.log('====================================');
+        })
+
+        this.props.navigation.addListener('willBlur', () => {
+            console.log('====================================');
+            console.log('FAQComponent: willBlur');
+            console.log('====================================');
+        })
+
+        this.props.navigation.addListener('didBlur', () => {
+            console.log('====================================');
+            console.log('FAQComponent: didBlur');
+            console.log('====================================');
+        })
+    }
+    
+    
+    componentWillUnmount() {
+        console.log('====================================');
+        console.log('FAQComponent: componentWillUnmount');
+        console.log('====================================');
+    }
+
     render() {
         return <View>
             <SafeAreaView>
             <ScrollView keyboardDismissMode='on-drag'>
+            <Button title='Login' onPress={() => this.props.navigation.popToTop()}></Button>
+            <Button title='Back' onPress={() => this.props.navigation.pop()}></Button>
+            <Button title='FAQ' onPress={() => this.props.navigation.push('FAQ')}></Button>
                 <TextInput placeholder='Email'></TextInput>
                 <Text>
                     How does Google protect my privacy and keep my information secure?
