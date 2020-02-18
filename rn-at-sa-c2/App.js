@@ -11,12 +11,16 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import GameComponent from './Components/GameComponent';
 import ScoreComponent from './Components/ScoreComponent';
+import MapComponent from './Components/MapComponent';
+import ImageComponent from './Components/ImageComponent';
 
 
 const AppContainer = createAppContainer(
 
   createBottomTabNavigator(
     {
+      Image: ImageComponent,
+      Map: MapComponent,
       Game: GameComponent,
       Score: ScoreComponent
     },
