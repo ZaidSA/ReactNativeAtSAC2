@@ -68,6 +68,10 @@ export default class LoginComponent extends Component {
     }
 
     onLogin = () => {
+        console.disableYellowBox = true
+        console.warn('Test 345')
+        // console.error('Test 123')
+        // return
         // console.log('====================================');
         // console.log(this.state.email);
         // console.log(this.state.password);

@@ -13,12 +13,13 @@ import GameComponent from './Components/GameComponent';
 import ScoreComponent from './Components/ScoreComponent';
 import MapComponent from './Components/MapComponent';
 import ImageComponent from './Components/ImageComponent';
-
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const AppContainer = createAppContainer(
 
   createBottomTabNavigator(
     {
+      Login: LoginComponent,
       Image: ImageComponent,
       Map: MapComponent,
       Game: GameComponent,
@@ -48,7 +49,7 @@ const reducer = (state = initialState, action) => {
   return { score: state.score }
 }
 
-const store = createStore(reducer)
+const store = createStore(reducer, composeWithDevTools())
 
 export default function App() {
   return <Provider store={store}>
